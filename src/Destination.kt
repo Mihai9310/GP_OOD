@@ -11,7 +11,6 @@ data class Destination(
     }
 
     fun applyPriceFactor(factor: Double) {
-        // e.g. factor 1.10 -> +10%, factor 0.90 -> -10%
         singlePrice = (singlePrice * factor)
         returnPrice = (returnPrice * factor)
     }
