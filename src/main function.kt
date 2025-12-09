@@ -1,4 +1,6 @@
+import ticketmachine.TicketMachine
 fun main() {
-    val machine = Tiket.TicketMachine("Bristol Temple Meads")
-    machine.start()}
+    val machine =TicketMachine("Bristol Temple Meads")
+    machine.start()
+}
 
