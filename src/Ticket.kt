@@ -4,7 +4,5 @@ data class Ticket(
     val destination: Destination,
     val type: String,
     val price: Double,
-    val departureTime: String   // can later be LocalDateTime
-){
-
-}
+    val departureTime: String
+)
