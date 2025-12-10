@@ -1,14 +1,14 @@
-package ticketmachine
-
-class TicketMachine(private val originStation: String) {
-
+class TicketMachine(
+    private val originStation: String,
+    val soldTickets: MutableList<Ticket> = mutableListOf(),
+    var ticketCounter: Int = 0
+    ) {
     private val destinations = mutableListOf(
         Destination("London", 45.0, 60.0),
         Destination("Cardiff", 15.0, 25.0),
         Destination("Weston Super Mare", 20.0, 35.0),
         Destination("Swansea", 35.0, 55.0)
     )
-
     private var insertedMoney: Double = 0.0
 
     fun start() {
@@ -30,17 +30,17 @@ class TicketMachine(private val originStation: String) {
                     println("Thank you for using the ticket machine!")
                     return
                 }
+
                 else -> println("Invalid option. Please try again.")
             }
         }
     }
-
     private fun searchTicket() {
         println("\nAvailable destinations:")
         destinations.forEach { println("- ${it.name}") }
 
         print("Enter destination: ")
-        val destinationName = readLine()?.trim()
+        val destinationName = readLine()?.trim()?.capitalize()
 
         val destination = destinations.find { it.name.equals(destinationName, ignoreCase = true) }
         if (destination == null) {
@@ -57,7 +57,6 @@ class TicketMachine(private val originStation: String) {
             else -> println("Invalid ticket type.")
         }
     }
-
     private fun insertMoney() {
         print("Enter amount to insert (£): ")
         val amount = readLine()?.toDoubleOrNull()
@@ -71,13 +70,12 @@ class TicketMachine(private val originStation: String) {
 
     private fun buyTicket() {
         print("Enter destination: ")
-        val destinationName = readLine()?.trim()
+        val destinationName = readLine()?.trim()?.capitalize()
         val destination = destinations.find { it.name.equals(destinationName, ignoreCase = true) }
         if (destination == null) {
             println("Destination not found.")
             return
         }
-
         print("Ticket type (single/return): ")
         val type = readLine()?.trim()?.lowercase()
 
@@ -100,7 +98,7 @@ class TicketMachine(private val originStation: String) {
 
         println("\n***")
         println("$originStation to ${destination.name}")
-        println("Price: £$price (${type!!.replaceFirstChar { it.uppercase() }})")
+        println("Price: £$price (${type!!.capitalize()})")
         println("***")
 
         println("Remaining balance: £$insertedMoney")
