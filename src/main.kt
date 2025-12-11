@@ -12,6 +12,7 @@ fun main() {
     )
 
     machine.start()
+
 }
 
 fun readInt(prompt: String): Int {
