@@ -2,14 +2,7 @@ data class Ticket(
     val reference: String,
     val origin: Destination,
     val destination: Destination,
-   // val type: TicketType,
+    val type: String,
     val price: Double,
-    val departureTime: String   // can later be LocalDateTime
-){
-    class TicketMachine(val location: String) {
-        fun start() {
-            // implementation
-        }
-    }
-
-}
+    val departureTime: String
+)

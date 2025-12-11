@@ -1,14 +1,17 @@
 class TicketMachine(
-    private val originStation: String,
     val soldTickets: MutableList<Ticket> = mutableListOf(),
-    var ticketCounter: Int = 0
-    ) {
-    val destinations = mutableListOf(
-        Destination("London", 45.0, 60.0),
-        Destination("Cardiff", 15.0, 25.0),
-        Destination("Weston Super Mare", 20.0, 35.0),
-        Destination("Swansea", 35.0, 55.0)
-    )
+    var ticketCounter: Int = 0,
+    val originStation: Destination,
+    val destinations: MutableList<Destination>
+) {
+    fun listDestinations(): List<Destination> = destinations.toList()
+
+//    private val destinations = mutableListOf(
+//        Destination("London", 45.0, 60.0),
+//        Destination("Cardiff", 15.0, 25.0),
+//        Destination("Weston Super Mare", 20.0, 35.0),
+//        Destination("Swansea", 35.0, 55.0)
+//    )
     private var insertedMoney: Double = 0.0
 
     // Hard-coded admin user
@@ -103,7 +106,7 @@ class TicketMachine(
         }
 
         insertedMoney -= price
-        destination.totalTakings += price
+        destination.takings += price
 
         println("\n***")
         println("$originStation to ${destination.name}")

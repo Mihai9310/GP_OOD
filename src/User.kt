@@ -5,6 +5,4 @@ open class User(
     val password: String,
     var balance: Double = 0.0,
     val tickets: MutableList<Ticket> = mutableListOf()
-){
-
 }
